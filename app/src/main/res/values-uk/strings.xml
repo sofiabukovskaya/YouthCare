@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="SportsmanSignIn">Спортсмен реєстрація</string>
+    <string name="DoctorSignIn">Доктор реєстрація</string>
+    <string name="sportsman_name">Ім\'я</string>
+    <string name="sportsman_surname">Прізвище</string>
+    <string name="sportsman_email">Пошта</string>
+    <string name="sportsman_pas">Пароль</string>
+    <string name="sportsman_signup">Зареєструватись</string>
+    <string name="tap_to_login">Нажміть щоб залогінітись</string>
+    <string name="are_you_doctor">Ви доктор? Нажімть сюди</string>
+    <string name="select_date">Виберіть дату народження</string>
+    <string name="are_you_sportsman">Ви спортсмен? Натисніть сюди</string>
+    <string name="profile_title"> Профіль користувача</string>
+    <string name="information_text"></string>
+    <string name="select"> Обрати</string>
+    <string name="username">Нік нейм</string>
+    <string name="profile">Профіль</string>
+    <string name="delivery">Відправити аналізи</string>
+    <string name="allan">Усі аналізи</string>
+    <string name="name_card">Ім\'я:</string>
+    <string name="surname_card">Прізвище:</string>
+    <string name="email_card">Ел. пошта:</string>
+    <string name="username_card">Нік нейм:</string>
+    <string name="adress_card">Адреса:</string>
+    <string name="phone_address">Телефон:</string>
+    <string name="middle_card">Середнє ім\'я:</string>
+    <string name="analys">Аналіз #</string>
+    <string name="type">Тип: </string>
+    <string name="docname">Ім\'я доктора: </string>
+    <string name="descrp">Опис: </string>
+    <string name="analysname">Аналіз</string>
+    <string name="choosedoc">Виберіть доктора</string>
+    <string name="choosetype">Виберіть тип</string>
+    <string name="measure">Вимірювання </string>
+    <string name="only">Тільки для BMR/BMI</string>
+    <string name="weight">Вага (kg)</string>
+    <string name="height">Зріст (BMR - cm | BMI - m)</string>
+    <string name="pass">Відправити аналіз</string>
+    <string name="middle">Серднє ім\'я</string>
+    <string name="phone">Телефон</string>
+    <string name="address">Адреса</string>
+    <string name="update">Оновити інформацію</string>
+    <string name="logout">Вийти</string>
+</resources>

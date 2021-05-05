@@ -1,0 +1,48 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" translatable="false">YouthCare</string>
+    <string name="labelLoginSportsman" translatable="false">Youth Care</string>
+    <string name="SportsmanSignIn">Sportsman Sign In</string>
+    <string name="DoctorSignIn">Doctor Sign In</string>
+    <string name="sportsman_name">Name</string>
+    <string name="sportsman_surname">Surname</string>
+    <string name="sportsman_email">Email</string>
+    <string name="sportsman_pas">Password</string>
+    <string name="sportsman_signup">Sign Up</string>
+    <string name="tap_to_login">Tap to Log In</string>
+    <string name="are_you_doctor">Are you a doctor? Tap here</string>
+    <string name="select_date">Selected data of birth</string>
+    <string name="are_you_sportsman">Are you a sportsman? Tap here</string>
+    <string name="profile_title"> User profile</string>
+    <string name="information_text"> It\'s your profile information. Please look through it.
+If you need to update, take your chance to do it!
+Thanks for using YouthCare!</string>
+    <string name="select"> Select</string>
+    <string name="username">Username</string>
+    <string name="profile">Profile</string>
+    <string name="delivery">Pass of analysis</string>
+    <string name="allan">All analysis</string>
+    <string name="name_card">Name:</string>
+    <string name="middle_card">Middle name:</string>
+    <string name="surname_card">Surname:</string>
+    <string name="email_card">Email:</string>
+    <string name="username_card">User name::</string>
+    <string name="adress_card">Address:</string>
+    <string name="phone_address">Phone:</string>
+    <string name="analys">Analysis #</string>
+    <string name="type">Type: </string>
+    <string name="descrp">Description: </string>
+    <string name="docname">Doctor name: </string>
+    <string name="analysname">Analysis</string>
+    <string name="choosedoc">Choose a doctor </string>
+    <string name="choosetype">Choose a type </string>
+    <string name="measure">Measure </string>
+    <string name="only">Only for BMR/BMI</string>
+    <string name="weight">Weight (kg)</string>
+    <string name="height">Height (BMR - cm | BMI - m)</string>
+    <string name="pass">Pass the analysis</string>
+    <string name="middle">Middle name</string>
+    <string name="phone">Phone number</string>
+    <string name="address">Address</string>
+    <string name="update">Update info</string>
+    <string name="logout">Logout</string>
+</resources>

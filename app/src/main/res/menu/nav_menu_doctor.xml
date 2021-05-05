@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/personDoctor"
+        android:icon="@drawable/person_24"
+        android:title="Profile"/>
+
+
+    <item android:id="@+id/all_sportsmans"
+        android:icon="@drawable/people_24"
+        android:title="All sportmans"/>
+</menu>

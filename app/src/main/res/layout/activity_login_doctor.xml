@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:context=".ui.doctorPage.LoginDoctor">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/purple_500"
+        android:fontFamily="@font/righteous"
+        android:gravity="center_horizontal"
+        android:text="Youth Care"
+        android:textColor="#E9FDF9"
+        android:textSize="45dp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@color/yellowtext"
+        android:fontFamily="@font/righteous"
+        android:gravity="center_horizontal"
+        android:text="@string/DoctorSignIn"
+        android:textColor="#E9FDF9"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputNameDoctor"
+        android:layout_width="384dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/righteous"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:fontFamily="@font/righteous"
+            android:hint="@string/sportsman_name"
+            android:inputType="textPersonName" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:id="@+id/textInputSurnameDoctor"
+        app:errorEnabled="true"
+        android:layout_height="50dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:fontFamily="@font/righteous"
+            android:hint="@string/sportsman_surname"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="215dp"
+        android:layout_height="25dp"
+        android:text="@string/select_date"
+        android:textStyle="bold"/>
+    <Button
+        android:id="@+id/selectDateDoctor"
+        android:layout_width="215dp"
+        android:layout_height="40dp"
+        android:onClick="selectDateDoc"
+        android:text="@string/select"/>
+    <TextView
+        android:id="@+id/selectedDateDoc"
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+
+    </TextView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/usernameDoctor"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:fontFamily="@font/righteous"
+            android:hint="@string/username"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailDoctor"
+        android:layout_width="383dp"
+        android:layout_height="54dp"
+        android:fontFamily="@font/righteous"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:fontFamily="@font/righteous"
+            android:hint="@string/sportsman_email"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputPasswordDoctor"
+        android:layout_width="381dp"
+        android:layout_height="57dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="15"
+        app:errorEnabled="true"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/righteous"
+            android:hint="@string/sportsman_pas"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/loginSignUpButtonPas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/purple_500"
+        android:fontFamily="@font/righteous"
+        android:onClick="loginSignUp"
+        android:text="@string/sportsman_signup"
+        android:textColor="#E9FDF9"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/TextViewSignUpPas"
+        android:text="@string/tap_to_login"
+        android:layout_marginTop="16dp"
+        android:textSize="20dp"
+        android:onClick="goToLogin"
+        android:textColor="@color/purple_500"
+        android:fontFamily="@font/righteous"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/goToSportsmanPage"
+        android:text="@string/are_you_sportsman"
+        android:layout_marginTop="16dp"
+        android:textSize="20dp"
+        android:onClick="goToSportsmanPage"
+        android:textColor="@color/purple_500"
+        android:fontFamily="@font/righteous"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
