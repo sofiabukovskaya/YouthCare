@@ -2,6 +2,7 @@ package com.example.youthcare.ui.sportsmanPage
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -13,6 +14,7 @@ import com.example.youthcare.R
 import com.example.youthcare.ui.sportsmanPage.fragments.AllAnalyzFragment
 import com.example.youthcare.ui.sportsmanPage.fragments.DeliveryAnalyzFragment
 import com.example.youthcare.ui.sportsmanPage.fragments.ProfileFragment
+import com.example.youthcare.ui.sportsmanPage.notes.NotesActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -89,6 +91,9 @@ class MainPageSportsman : AppCompatActivity() {
             }
             builder.show()
             return true
+        } else if(id == R.id.addNote) {
+            val intent = Intent(this, NotesActivity::class.java)
+            startActivity(intent)
         }
 
         return super.onOptionsItemSelected(item)

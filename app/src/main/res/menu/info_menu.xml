@@ -6,4 +6,9 @@
         android:icon="@drawable/ic_baseline_info_24"
         app:showAsAction="always"
         android:title="Item One"/>
+    <item
+        android:id="@+id/addNote"
+        android:icon="@drawable/note"
+        app:showAsAction="always"
+        android:title="Note"/>
 </menu>

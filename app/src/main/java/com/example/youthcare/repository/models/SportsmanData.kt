@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class SportsmanData(
+        @SerializedName("id")
+        var id: String,
 
         @SerializedName("name")
         var name: String,

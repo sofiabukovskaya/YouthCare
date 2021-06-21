@@ -1,13 +1,11 @@
 package com.example.youthcare.ui.adminPage
 
-import android.content.Intent.getIntent
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.youthcare.ApiInterface
 import com.example.youthcare.R
@@ -18,8 +16,9 @@ import retrofit2.Call
 import retrofit2.Response
 import java.util.ArrayList
 
-class UsersAdapter(var usersList: ArrayList<UserResponse>) :
+class UsersAdapter(var usersList: ArrayList<UserResponse>, applicationContext: Context) :
     RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
+    val context = applicationContext
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.all_users, parent, false)
         return ViewHolder(v)
@@ -28,8 +27,8 @@ class UsersAdapter(var usersList: ArrayList<UserResponse>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(usersList[position])
         holder.deleteButton?.setOnClickListener {
-            
-            val retIn = RetrofitInstance.getRetrofitInstance().create(ApiInterface::class.java)
+
+            val retIn = RetrofitInstance.getRetrofitInstance(context).create(ApiInterface::class.java)
             unSafeOkHttpClient()
             retIn.deleteCurrentUser(usersList[position].id.toString()).enqueue(object :
                 retrofit2.Callback<Void> {

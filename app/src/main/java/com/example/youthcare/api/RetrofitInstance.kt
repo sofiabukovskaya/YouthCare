@@ -1,5 +1,6 @@
 package com.example.youthcare
 
+import android.content.Context
 import com.example.youthcare.repository.models.*
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -9,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.*
 import java.security.KeyManagementException
+import java.security.KeyStore
 import java.security.NoSuchAlgorithmException
 import java.security.SecureRandom
 import java.security.cert.CertificateException
@@ -44,6 +46,18 @@ interface ApiInterface {
     @Headers("Content-Type:application/json")
     @DELETE("/api/Users/{id}")
     fun deleteCurrentUser(@Path("id") id: String): retrofit2.Call<Void>
+
+    @Headers("Content-Type:application/json")
+    @GET("/api/Section")
+    fun getSections(): retrofit2.Call<ArrayList<Section>>
+
+    @Headers("Content-Type:application/json")
+    @POST("/api/SportsmanNote")
+    fun createNote(@Body info: NoteData): retrofit2.Call<ResponseBody>
+
+    @Headers("Content-Type:application/json")
+    @GET("/api/SportsmanNote/{id}")
+    fun getNotes(@Path("id") id: String): retrofit2.Call<java.util.ArrayList<NoteData>>
 
 }
 
@@ -150,7 +164,7 @@ fun trustAllCertificates() {
 class RetrofitInstance {
 
     companion object {
-        val BASE_URL: String = "http://192.168.0.108:61245/api/"
+        val BASE_URL: String = "https://youth-care.azurewebsites.net/"
 
         val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
             trustAllCertificates()
@@ -167,9 +181,7 @@ class RetrofitInstance {
                 .readTimeout(100, TimeUnit.SECONDS)
                 .build()
 
-
-
-        fun getRetrofitInstance(): Retrofit {
+        fun getRetrofitInstance(context: Context): Retrofit {
             unSafeOkHttpClient()
             trustAllCertificates()
             HttpsTrustManager.allowAllSSL()
@@ -177,6 +189,40 @@ class RetrofitInstance {
                 .baseUrl(BASE_URL)
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+        }
+
+    }
+}
+
+class  RetrofitSections{
+    companion object {
+        val BASE_URL: String = "https://youth-care.azurewebsites.net/api/"
+
+        val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
+            trustAllCertificates()
+            unSafeOkHttpClient()
+            this.level = HttpLoggingInterceptor.Level.BODY
+        }
+
+
+        val client: OkHttpClient = OkHttpClient.Builder().apply {
+            trustAllCertificates()
+            unSafeOkHttpClient()
+            this.addInterceptor(interceptor)
+        }.connectTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(100, TimeUnit.SECONDS)
+            .build()
+
+        fun getRetrofitInstance(context: Context): Retrofit {
+            unSafeOkHttpClient()
+            trustAllCertificates()
+            HttpsTrustManager.allowAllSSL()
+            return Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
         }

@@ -113,7 +113,7 @@ class DeliveryAnalyzFragment : Fragment() {
             "Temperature" -> {
                 if (measureAn.toDouble()>= minTemperature && measureAn.toDouble() <= maxTemperature) {
                     description = "The temperature result is good, it equals to  ${measureAn.toString()}. You're excepted to the competition."
-                    result == "true"
+                   result = "true"
                 } else {
                     description = "The temperature result isn't good, it equals to  ${measureAn.toString()}. You're not excepted to the competition, please, contact your doctor."
                     result == "true"
