@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.youthcare.ApiInterface
 import com.example.youthcare.R
 import com.example.youthcare.RetrofitInstance
+import com.example.youthcare.RetrofitSections
 import com.example.youthcare.api.SessionManager
 import com.example.youthcare.repository.models.NoteData
+import com.example.youthcare.repository.models.NoteResponse
 import com.example.youthcare.repository.models.UserResponse
 import com.example.youthcare.ui.adminPage.UsersAdapter
 import com.example.youthcare.ui.sportsmanPage.LoginSportsman
@@ -30,34 +32,27 @@ class NotesActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.notesLv)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        var  notes: ArrayList<NoteData>
+        var  notes: ArrayList<NoteResponse>
         val retIn = RetrofitInstance.getRetrofitInstance(applicationContext).create(ApiInterface::class.java)
         var sessionManager = SessionManager(applicationContext)
-        retIn.getNotes(sessionManager.fetchUserId().toString()).enqueue(object : retrofit2.Callback<ArrayList<NoteData>>{
+        retIn.getNotes().enqueue(object : retrofit2.Callback<ArrayList<NoteResponse>>{
             override fun onResponse(
-                call: Call<ArrayList<NoteData>>,
-                response: Response<ArrayList<NoteData>>
+                call: Call<ArrayList<NoteResponse>>,
+                response: Response<ArrayList<NoteResponse>>
             ) {
-                if (response.code() == 200) {
                     notes = response.body()!!
                     val adapter = NotesAdapter(notes, applicationContext)
                     recyclerView.adapter = adapter
 
-                } else {
-                    Toast.makeText(
-                        this@NotesActivity,
-                        "Sorry, you haven't notes :(",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
             }
 
-            override fun onFailure(call: Call<ArrayList<NoteData>>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<NoteResponse>>, t: Throwable) {
                 Toast.makeText(
                     this@NotesActivity,
-                    "Sorry, you haven't notes :(",
+                    "Sorry, you haven't notes :( + ${t.message}",
                     Toast.LENGTH_SHORT
                 ).show()
+                print("ERRROOOR ${t.message}")
             }
 
         })

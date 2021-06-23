@@ -27,7 +27,6 @@ class UsersAdapter(var usersList: ArrayList<UserResponse>, applicationContext: C
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(usersList[position])
         holder.deleteButton?.setOnClickListener {
-
             val retIn = RetrofitInstance.getRetrofitInstance(context).create(ApiInterface::class.java)
             unSafeOkHttpClient()
             retIn.deleteCurrentUser(usersList[position].id.toString()).enqueue(object :

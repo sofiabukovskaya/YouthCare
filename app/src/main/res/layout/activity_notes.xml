@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.sportsmanPage.notes.NotesActivity">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notesLv"
         android:layout_width="match_parent"

@@ -15,12 +15,14 @@
         android:theme="@style/Theme.YouthCare"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.sportsmanPage.notes.AddNoteActivity"></activity>
-        <activity android:name=".ui.sportsmanPage.notes.NotesActivity" />
+        <activity android:name=".ui.sportsmanPage.notes.NotesActivity"
+            android:parentActivityName=".ui.sportsmanPage.MainPageSportsman"/>
         <activity android:name=".ui.adminPage.AdminActivity" />
         <activity android:name=".ui.doctorPage.MainPageDoctor" />
         <activity android:name=".ui.sportsmanPage.MainPageSportsman" />
         <activity android:name=".ui.doctorPage.LoginDoctor" />
         <activity android:name=".ui.sportsmanPage.LoginSportsman" />
+
         <activity
             android:name=".ui.SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

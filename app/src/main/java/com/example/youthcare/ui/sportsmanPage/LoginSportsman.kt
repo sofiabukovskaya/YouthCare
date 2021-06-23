@@ -69,7 +69,7 @@ class LoginSportsman : AppCompatActivity() {
         var sections : ArrayList<Section>
         var sectionList : ArrayList<String> = ArrayList<String>()
         val retIn = RetrofitInstance.getRetrofitInstance(applicationContext).create(ApiInterface::class.java)
-        val retrofitSection = RetrofitSections.getRetrofitInstance(applicationContext).create(ApiInterface::class.java);
+        val retrofitSection = RetrofitInstance.getRetrofitInstance(applicationContext).create(ApiInterface::class.java);
         retrofitSection.getSections().enqueue(object : retrofit2.Callback<ArrayList<Section>> {
             override fun onResponse(
                 call: Call<ArrayList<Section>>,

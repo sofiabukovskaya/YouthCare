@@ -2,15 +2,16 @@ package com.example.youthcare
 
 import android.content.Context
 import com.example.youthcare.repository.models.*
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.*
 import java.security.KeyManagementException
-import java.security.KeyStore
 import java.security.NoSuchAlgorithmException
 import java.security.SecureRandom
 import java.security.cert.CertificateException
@@ -27,7 +28,7 @@ interface ApiInterface {
     @Headers("Content-Type:application/json")
     @POST("/api/UserAuth/registration")
     fun registerUser(
-            @Body info: UserBody
+        @Body info: UserBody
     ): retrofit2.Call<ResponseBody>
 
     @Headers("Content-Type:application/json")
@@ -56,8 +57,12 @@ interface ApiInterface {
     fun createNote(@Body info: NoteData): retrofit2.Call<ResponseBody>
 
     @Headers("Content-Type:application/json")
-    @GET("/api/SportsmanNote/{id}")
-    fun getNotes(@Path("id") id: String): retrofit2.Call<java.util.ArrayList<NoteData>>
+    @GET("/api/SportsmanNote")
+    fun getNotes(): retrofit2.Call<java.util.ArrayList<NoteResponse>>
+
+    @Headers("Content-Type:application/json")
+    @DELETE("/api/SportsmanNote/{id}")
+    fun deleteNote(@Path("id")id: String): retrofit2.Call<Void>
 
 }
 
@@ -66,8 +71,18 @@ fun unSafeOkHttpClient() :OkHttpClient.Builder {
     try {
         // Create a trust manager that does not validate certificate chains
         val trustAllCerts:  Array<TrustManager> = arrayOf(object : X509TrustManager {
-            override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {}
-            override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {}
+            override fun checkClientTrusted(
+                chain: Array<out X509Certificate>?,
+                authType: String?
+            ) {
+            }
+
+            override fun checkServerTrusted(
+                chain: Array<out X509Certificate>?,
+                authType: String?
+            ) {
+            }
+
             override fun getAcceptedIssuers(): Array<X509Certificate> = arrayOf()
         })
 
@@ -78,7 +93,10 @@ fun unSafeOkHttpClient() :OkHttpClient.Builder {
         // Create an ssl socket factory with our all-trusting manager
         val sslSocketFactory = sslContext.socketFactory
         if (trustAllCerts.isNotEmpty() &&  trustAllCerts.first() is X509TrustManager) {
-            okHttpClient.sslSocketFactory(sslSocketFactory, trustAllCerts.first() as X509TrustManager)
+            okHttpClient.sslSocketFactory(
+                sslSocketFactory,
+                trustAllCerts.first() as X509TrustManager
+            )
             okHttpClient.hostnameVerifier { _, _ -> true}
         }
 
@@ -91,12 +109,14 @@ fun unSafeOkHttpClient() :OkHttpClient.Builder {
  class HttpsTrustManager : X509TrustManager {
     @Throws(CertificateException::class)
     override fun checkClientTrusted(
-            x509Certificates: Array<X509Certificate?>?, s: String?) {
+        x509Certificates: Array<X509Certificate?>?, s: String?
+    ) {
     }
 
     @Throws(CertificateException::class)
     override fun checkServerTrusted(
-            x509Certificates: Array<X509Certificate?>?, s: String?) {
+        x509Certificates: Array<X509Certificate?>?, s: String?
+    ) {
     }
 
      override fun getAcceptedIssuers(): Array<X509Certificate> {
@@ -136,8 +156,10 @@ fun unSafeOkHttpClient() :OkHttpClient.Builder {
             } catch (e: KeyManagementException) {
                 e.printStackTrace()
             }
-            HttpsURLConnection.setDefaultSSLSocketFactory(context
-                    ?.socketFactory)
+            HttpsURLConnection.setDefaultSSLSocketFactory(
+                context
+                    ?.socketFactory
+            )
         }
     }
 }
@@ -145,14 +167,23 @@ fun unSafeOkHttpClient() :OkHttpClient.Builder {
 fun trustAllCertificates() {
     try {
         val trustAllCerts = arrayOf<TrustManager>(
-                object : X509TrustManager {
-                    override fun getAcceptedIssuers(): Array<X509Certificate?>? {
-                        return arrayOfNulls(0)
-                    }
-
-                    override fun checkClientTrusted(certs: Array<X509Certificate?>?, authType: String?) {}
-                    override fun checkServerTrusted(certs: Array<X509Certificate?>?, authType: String?) {}
+            object : X509TrustManager {
+                override fun getAcceptedIssuers(): Array<X509Certificate?>? {
+                    return arrayOfNulls(0)
                 }
+
+                override fun checkClientTrusted(
+                    certs: Array<X509Certificate?>?,
+                    authType: String?
+                ) {
+                }
+
+                override fun checkServerTrusted(
+                    certs: Array<X509Certificate?>?,
+                    authType: String?
+                ) {
+                }
+            }
         )
         val sc = SSLContext.getInstance("SSL")
         sc.init(null, trustAllCerts, SecureRandom())
@@ -161,6 +192,7 @@ fun trustAllCertificates() {
     } catch (e: java.lang.Exception) {
     }
 }
+
 class RetrofitInstance {
 
     companion object {
@@ -172,7 +204,7 @@ class RetrofitInstance {
             this.level = HttpLoggingInterceptor.Level.BODY
         }
 
-
+        var gson = GsonBuilder().setLenient().create()
         val client: OkHttpClient = OkHttpClient.Builder().apply {
             trustAllCertificates()
             unSafeOkHttpClient()
@@ -189,6 +221,7 @@ class RetrofitInstance {
                 .baseUrl(BASE_URL)
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create().asLenient())
                 .client(client)
                 .build()
         }

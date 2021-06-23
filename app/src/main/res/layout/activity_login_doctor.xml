@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -64,6 +69,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
+        android:id="@+id/labelSelectDate"
         android:layout_width="215dp"
         android:layout_height="25dp"
         android:text="@string/select_date"
@@ -171,3 +177,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </LinearLayout>
+
+</ScrollView>

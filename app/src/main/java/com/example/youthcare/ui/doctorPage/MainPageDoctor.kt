@@ -16,7 +16,6 @@ class MainPageDoctor : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_page_doctor)
         var bottom_bar: BottomNavigationView = findViewById(R.id.bottom_navigation_doctor)
-
         val profileFragment = ProfileDoctorFragment();
         val allSportsmanFragment = AllSportsmansFragment();
         makeCurrentFragment(profileFragment)
